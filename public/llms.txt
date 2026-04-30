@@ -1,79 +1,94 @@
-# Business — Generative Engine Optimization Map
+# החוסך — Generative Engine Optimization Map
+
+> HaChoseh (The Saver) is a premium home design gallery that fights against cheap, misleading online suppliers by offering fully customizable, high-quality home products sourced from top-tier suppliers using superior raw materials. The brand's core identity revolves around radical transparency, genuine savings, and unmatched personal service that cannot be found elsewhere. With a strong community built entirely on word-of-mouth referrals from satisfied customers, HaChoseh positions itself as the trustworthy alternative in a market full of disappointing products and broken promises. The slogan 'Buy right, earn a lot' encapsulates the brand's promise: real quality at real value.
 
 ---
 
 ## Pages
 
 ### בית
-https://example.com
+https://hahosech.zappy5.app
 עיצוב פנים לדירה חדשה שמשלב איכות אמיתית עם מחיר הוגן. החוסך מציע מוצרי בית מותאמים אישית, ספקים מהשורה הראשונה ושירות שלא תמצאו בשום מקום אחר. הגיע הזמן לקנות נכון.
 
 ### התאמה אישית ואיכות
-https://example.com/customization-quality
+https://hahosech.zappy5.app/customization-quality
 כל פריט מותאם בדיוק לצרכים שלך — בד, צבע, מידה וסגנון. החוסך עובד אך ורק עם חומרי גלם מעולים וספקים מובחרים כדי להבטיח שכל רכישה תהיה השקעה שתחזיק לאורך שנים. גלו את ההבדל.
 
 ### אמון הקהילה
-https://example.com/community-trust
+https://hahosech.zappy5.app/community-trust
 הקהילה של החוסך נבנתה מפה לאוזן בלבד — ללא פרסום, רק אמון אמיתי. לקוחות שחזרו שוב ושוב מספרים על שירות אישי, שקיפות מלאה ומוצרים שעמדו בכל הבטחה. גלו מדוע ממליצים עלינו לכולם.
 
 ### צור קשר
-https://example.com/contact
+https://hahosech.zappy5.app/contact
 רוצים לעצב את הבית בלי להתפשר על איכות ובלי להיות מופתעים מהתוצאה? צרו קשר עם מומחי החוסך לייעוץ עיצוב בית אישי, קבלו הצעת מחיר שקופה ותתחילו לחסוך נכון. אנחנו כאן בשבילכם.
 
 ### Products
-https://example.com/products
+https://hahosech.zappy5.app/products
 המוצרים שלנו - החוסך
 
 ### Cart
-https://example.com/cart
+https://hahosech.zappy5.app/cart
 עגלת הקניות שלך
 
 ### Checkout
-https://example.com/checkout
+https://hahosech.zappy5.app/checkout
 תשלום
 
 ### Login
-https://example.com/login
+https://hahosech.zappy5.app/login
 התחברות לקוחות
 
 ### Account
-https://example.com/account
+https://hahosech.zappy5.app/account
 החשבון שלי
 
 ### Order Success
-https://example.com/order-success
+https://hahosech.zappy5.app/order-success
 תודה על ההזמנה
 
 ### Product Detail
-https://example.com/product/:slug
+https://hahosech.zappy5.app/product/:slug
 פרטי המוצר - החוסך
 
 ### Category
-https://example.com/category/:slug
+https://hahosech.zappy5.app/category/:slug
 מוצרים - החוסך
 
 ## Legal & Policy
 
 ### Privacy Policy
-https://example.com/privacy
+https://hahosech.zappy5.app/privacy
 Information about how user data is collected, stored, and protected.
 
 ### Terms & Conditions
-https://example.com/terms
+https://hahosech.zappy5.app/terms
 Legal terms describing service usage, rights, and policies.
 
 ### Accessibility Statement
-https://example.com/accessibility
+https://hahosech.zappy5.app/accessibility
 Information about WCAG compliance and accessibility features.
 
 ---
 
 # Business Context (for LLM understanding)
 
-## About Business
+## About החוסך
+HaChoseh (The Saver) is a premium home design gallery that fights against cheap, misleading online suppliers by offering fully customizable, high-quality home products sourced from top-tier suppliers using superior raw materials. The brand's core identity revolves around radical transparency, genuine savings, and unmatched personal service that cannot be found elsewhere. With a strong community built entirely on word-of-mouth referrals from satisfied customers, HaChoseh positions itself as the trustworthy alternative in a market full of disappointing products and broken promises. The slogan 'Buy right, earn a lot' encapsulates the brand's promise: real quality at real value.
+
+## Target Audience
+- לקוחות המחפשים מוצרי עיצוב בית איכותיים במחירים תחרותיים, עם דגש על שירות אישי
+- אוהבי עיצוב בעלי הכנסה גבוהה
+- בעלי בתים צעירים מקצוענים
+- חובבי עיצוב פנים
+- זוגות שנכנסים לדירה חדשה וזוגות שמשפצים דירות ישנות וצריכים לרהט את כל הדירה
+- קבוצות רכישה למינהם וועדי עובדים
+
+## Industry
+עיצוב הבית ורהיטים
+
 ---
 
 # Additional Resources
 
-- **Sitemap**: https://example.com/sitemap.xml
-- **Robots.txt**: https://example.com/robots.txt
+- **Sitemap**: https://hahosech.zappy5.app/sitemap.xml
+- **Robots.txt**: https://hahosech.zappy5.app/robots.txt
