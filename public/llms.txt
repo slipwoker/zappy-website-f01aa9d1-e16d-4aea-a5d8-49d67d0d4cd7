@@ -1,6 +1,4 @@
-# החוסך — Generative Engine Optimization Map
-
-> HaChoseh (The Saver) is a premium home design gallery that fights against cheap, misleading online suppliers by offering fully customizable, high-quality home products sourced from top-tier suppliers using superior raw materials. The brand's core identity revolves around radical transparency, genuine savings, and unmatched personal service that cannot be found elsewhere. With a strong community built entirely on word-of-mouth referrals from satisfied customers, HaChoseh positions itself as the trustworthy alternative in a market full of disappointing products and broken promises. The slogan 'Buy right, earn a lot' encapsulates the brand's promise: real quality at real value.
+# Business — Generative Engine Optimization Map
 
 ---
 
@@ -72,20 +70,7 @@ Information about WCAG compliance and accessibility features.
 
 # Business Context (for LLM understanding)
 
-## About החוסך
-HaChoseh (The Saver) is a premium home design gallery that fights against cheap, misleading online suppliers by offering fully customizable, high-quality home products sourced from top-tier suppliers using superior raw materials. The brand's core identity revolves around radical transparency, genuine savings, and unmatched personal service that cannot be found elsewhere. With a strong community built entirely on word-of-mouth referrals from satisfied customers, HaChoseh positions itself as the trustworthy alternative in a market full of disappointing products and broken promises. The slogan 'Buy right, earn a lot' encapsulates the brand's promise: real quality at real value.
-
-## Target Audience
-- לקוחות המחפשים מוצרי עיצוב בית איכותיים במחירים תחרותיים, עם דגש על שירות אישי
-- אוהבי עיצוב בעלי הכנסה גבוהה
-- בעלי בתים צעירים מקצוענים
-- חובבי עיצוב פנים
-- זוגות שנכנסים לדירה חדשה וזוגות שמשפצים דירות ישנות וצריכים לרהט את כל הדירה
-- קבוצות רכישה למינהם וועדי עובדים
-
-## Industry
-עיצוב הבית ורהיטים
-
+## About Business
 ---
 
 # Additional Resources
