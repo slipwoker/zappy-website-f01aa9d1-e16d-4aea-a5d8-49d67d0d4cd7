@@ -1,0 +1,79 @@
+# Business — Generative Engine Optimization Map
+
+---
+
+## Pages
+
+### בית
+https://example.com
+עיצוב פנים לדירה חדשה שמשלב איכות אמיתית עם מחיר הוגן. החוסך מציע מוצרי בית מותאמים אישית, ספקים מהשורה הראשונה ושירות שלא תמצאו בשום מקום אחר. הגיע הזמן לקנות נכון.
+
+### התאמה אישית ואיכות
+https://example.com/customization-quality
+כל פריט מותאם בדיוק לצרכים שלך — בד, צבע, מידה וסגנון. החוסך עובד אך ורק עם חומרי גלם מעולים וספקים מובחרים כדי להבטיח שכל רכישה תהיה השקעה שתחזיק לאורך שנים. גלו את ההבדל.
+
+### אמון הקהילה
+https://example.com/community-trust
+הקהילה של החוסך נבנתה מפה לאוזן בלבד — ללא פרסום, רק אמון אמיתי. לקוחות שחזרו שוב ושוב מספרים על שירות אישי, שקיפות מלאה ומוצרים שעמדו בכל הבטחה. גלו מדוע ממליצים עלינו לכולם.
+
+### צור קשר
+https://example.com/contact
+רוצים לעצב את הבית בלי להתפשר על איכות ובלי להיות מופתעים מהתוצאה? צרו קשר עם מומחי החוסך לייעוץ עיצוב בית אישי, קבלו הצעת מחיר שקופה ותתחילו לחסוך נכון. אנחנו כאן בשבילכם.
+
+### Products
+https://example.com/products
+המוצרים שלנו - החוסך
+
+### Cart
+https://example.com/cart
+עגלת הקניות שלך
+
+### Checkout
+https://example.com/checkout
+תשלום
+
+### Login
+https://example.com/login
+התחברות לקוחות
+
+### Account
+https://example.com/account
+החשבון שלי
+
+### Order Success
+https://example.com/order-success
+תודה על ההזמנה
+
+### Product Detail
+https://example.com/product/:slug
+פרטי המוצר - החוסך
+
+### Category
+https://example.com/category/:slug
+מוצרים - החוסך
+
+## Legal & Policy
+
+### Privacy Policy
+https://example.com/privacy
+Information about how user data is collected, stored, and protected.
+
+### Terms & Conditions
+https://example.com/terms
+Legal terms describing service usage, rights, and policies.
+
+### Accessibility Statement
+https://example.com/accessibility
+Information about WCAG compliance and accessibility features.
+
+---
+
+# Business Context (for LLM understanding)
+
+## About Business
+---
+
+# Additional Resources
+
+- **Sitemap**: https://example.com/sitemap.xml
+- **Robots.txt**: https://example.com/robots.txt

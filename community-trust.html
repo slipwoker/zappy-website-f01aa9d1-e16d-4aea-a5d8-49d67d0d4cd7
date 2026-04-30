@@ -1,0 +1,1479 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="index, follow">
+    <title>אלפי לקוחות מרוצים לא טועים — הצטרפו — החוסך</title>
+    <meta name="description" content="הקהילה של החוסך נבנתה מפה לאוזן בלבד — ללא פרסום, רק אמון אמיתי. לקוחות שחזרו שוב ושוב מספרים על שירות אישי, שקיפות מלאה ומוצרים שעמדו בכל הבטחה. גלו מדוע ממליצים עלינו לכולם.">
+    <meta name="keywords" content="המלצות לקוחות, קהילת החוסך, ייעוץ אישי, אמון ושקיפות, חוויית לקוח אמיתית">
+    
+    <!-- Favicons -->
+    <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="48x48" href="/assets/favicon-48x48.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/assets/favicon-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/assets/favicon-512x512.png">
+    <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+    <!-- Zappy Analytics -->
+<script>
+(function() {
+  'use strict';
+  
+  // Configuration
+  var config = {
+    websiteId: 'f01aa9d1-e16d-4aea-a5d8-49d67d0d4cd7',
+    apiUrl: 'https://api.zappy5.com/api/analytics/track',
+    sessionDuration: 30 * 60 * 1000, // 30 minutes
+    visitorDuration: 30 * 24 * 60 * 60 * 1000, // 30 days
+    trackPageViews: true,
+    trackClicks: true,
+    trackFormSubmissions: true
+  };
+  
+  // Generate or retrieve persistent visitor ID (30 days)
+  function getVisitorId() {
+    var visitorKey = 'zappy_visitor_' + config.websiteId;
+    var visitor = null;
+    
+    try {
+      visitor = localStorage.getItem(visitorKey);
+      if (visitor) {
+        var visitorData = JSON.parse(visitor);
+        var now = Date.now();
+        
+        // Check if visitor ID is still valid (30 days)
+        if (now - visitorData.created < config.visitorDuration) {
+          // Update last seen timestamp
+          visitorData.lastSeen = now;
+          localStorage.setItem(visitorKey, JSON.stringify(visitorData));
+          return visitorData.id;
+        }
+      }
+    } catch (e) {
+      console.warn('Zappy Analytics: LocalStorage not available');
+    }
+    
+    // Generate new visitor ID
+    var newVisitorId = 'zv_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+    
+    try {
+      localStorage.setItem(visitorKey, JSON.stringify({
+        id: newVisitorId,
+        created: Date.now(),
+        lastSeen: Date.now()
+      }));
+    } catch (e) {
+      // Continue without local storage
+    }
+    
+    return newVisitorId;
+  }
+  
+  // Generate or retrieve session ID (30 minutes)
+  function getSessionId() {
+    var sessionKey = 'zappy_session_' + config.websiteId;
+    var session = null;
+    
+    try {
+      session = sessionStorage.getItem(sessionKey);
+      if (session) {
+        var sessionData = JSON.parse(session);
+        var now = Date.now();
+        
+        // Check if session is still valid
+        if (now - sessionData.timestamp < config.sessionDuration) {
+          // Update timestamp
+          sessionData.timestamp = now;
+          sessionStorage.setItem(sessionKey, JSON.stringify(sessionData));
+          return sessionData.id;
+        }
+      }
+    } catch (e) {
+      console.warn('Zappy Analytics: SessionStorage not available');
+    }
+    
+    // Generate new session ID
+    var newSessionId = 'zs_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+    
+    try {
+      sessionStorage.setItem(sessionKey, JSON.stringify({
+        id: newSessionId,
+        timestamp: Date.now()
+      }));
+    } catch (e) {
+      // Continue without session storage
+    }
+    
+    return newSessionId;
+  }
+  
+  var visitorId = getVisitorId();
+  var sessionId = getSessionId();
+  
+  // Track an event
+  function trackEvent(eventType, data) {
+    data = data || {};
+    
+    var eventData = {
+      website_id: config.websiteId,
+      event_type: eventType,
+      page_path: window.location.pathname,
+      referrer: document.referrer || 'direct',
+      visitor_id: visitorId,
+      session_id: sessionId,
+      metadata: data
+    };
+    
+    // Use sendBeacon if available (better for page unload events)
+    if (navigator.sendBeacon) {
+      var blob = new Blob([JSON.stringify(eventData)], { type: 'application/json' });
+      navigator.sendBeacon(config.apiUrl, blob);
+    } else {
+      // Fallback to fetch
+      fetch(config.apiUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(eventData),
+        keepalive: true
+      }).catch(function(error) {
+        console.warn('Zappy Analytics: Failed to track event', error);
+      });
+    }
+  }
+  
+  // Track page view
+  if (config.trackPageViews) {
+    trackEvent('pageview', {
+      title: document.title,
+      url: window.location.href
+    });
+  }
+  
+  // Track clicks on important elements
+  if (config.trackClicks) {
+    document.addEventListener('click', function(e) {
+      var target = e.target;
+      
+      // Track button clicks (counted as actions)
+      if (target.tagName === 'BUTTON' || target.closest('button')) {
+        var button = target.tagName === 'BUTTON' ? target : target.closest('button');
+        trackEvent('click', {
+          element: 'button',
+          text: button.textContent.trim().substring(0, 100),
+          id: button.id || null,
+          class: button.className || null
+        });
+      }
+      
+      // Track link clicks (navigation - not counted as actions)
+      else if (target.tagName === 'A' || target.closest('a')) {
+        var link = target.tagName === 'A' ? target : target.closest('a');
+        trackEvent('navigation', {
+          element: 'link',
+          text: link.textContent.trim().substring(0, 100),
+          href: link.href,
+          external: link.hostname !== window.location.hostname
+        });
+      }
+    }, true);
+  }
+  
+  // Track form submissions
+  if (config.trackFormSubmissions) {
+    document.addEventListener('submit', function(e) {
+      var form = e.target;
+      
+      trackEvent('form_submit', {
+        form_id: form.id || null,
+        form_name: form.name || null,
+        form_action: form.action || null,
+        form_method: form.method || 'GET'
+      });
+    }, true);
+  }
+  
+  // Track time on page (send on page unload)
+  var pageLoadTime = Date.now();
+  
+  window.addEventListener('beforeunload', function() {
+    var timeOnPage = Math.floor((Date.now() - pageLoadTime) / 1000); // in seconds
+    
+    trackEvent('page_unload', {
+      time_on_page: timeOnPage,
+      page_path: window.location.pathname
+    });
+  });
+  
+  // Expose tracking function globally for custom events
+  window.zappyAnalytics = {
+    track: trackEvent,
+    getVisitorId: function() { return visitorId; },
+    getSessionId: function() { return sessionId; }
+  };
+  
+})();
+</script>
+<!-- End Zappy Analytics -->
+    <meta property="og:title" content="אלפי לקוחות מרוצים לא טועים — הצטרפו — החוסך">
+    <meta property="og:description" content="הקהילה של החוסך נבנתה מפה לאוזן בלבד — ללא פרסום, רק אמון אמיתי. לקוחות שחזרו שוב ושוב מספרים על שירות אישי, שקיפות מלאה ומוצרים שעמדו בכל הבטחה. גלו מדוע ממליצים עלינו לכולם.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="אלפי לקוחות מרוצים לא טועים — הצטרפו — החוסך">
+    <meta name="twitter:description" content="הקהילה של החוסך נבנתה מפה לאוזן בלבד — ללא פרסום, רק אמון אמיתי. לקוחות שחזרו שוב ושוב מספרים על שירות אישי, שקיפות מלאה ומוצרים שעמדו בכל הבטחה. גלו מדוע ממליצים עלינו לכולם.">
+    <meta property="og:type" content="website">
+  <meta property="og:locale" content="he_IL">
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="48x48" href="/assets/favicon-48x48.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/assets/favicon-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/assets/favicon-512x512.png">
+    <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+    <!-- Cookie Consent -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vanilla-cookieconsent@3/dist/cookieconsent.css">
+    <script src="https://cdn.jsdelivr.net/npm/vanilla-cookieconsent@3/dist/cookieconsent.umd.js"></script>
+    <!-- Mickidum Accessibility Toolbar -->
+    <script src="https://cdn.jsdelivr.net/gh/mickidum/acc_toolbar/acctoolbar/acctoolbar.min.js"></script>
+    <link rel="stylesheet" href="/styles.css">
+
+    <style id="zappy-dropdown-submenu-styles">
+      /* ========== DESKTOP DROPDOWN SUBMENU STYLES ========== */
+      /* Base styles for dropdown submenus - parent must be positioned */
+      .nav-menu li:has(.sub-menu), nav li:has(.sub-menu), .navbar li:has(.sub-menu), #navMenu li:has(.sub-menu) { position: relative; }
+      /* Submenu base - hidden by default */
+      .nav-menu .sub-menu, nav .sub-menu, .navbar .sub-menu, #navMenu .sub-menu { display: block !important; position: absolute !important; top: 100%; left: 0; min-width: 220px; background: white; border-radius: 8px; box-shadow: 0 8px 25px rgba(0,0,0,0.15); padding: 8px 0; opacity: 0; visibility: hidden; transform: translateY(10px); transition: all 0.3s ease; z-index: 1000; list-style: none; pointer-events: none; }
+      /* CRITICAL: Desktop hover styles to show dropdown */
+      .nav-menu li:hover > .sub-menu, nav li:hover > .sub-menu, .navbar li:hover > .sub-menu, #navMenu li:hover > .sub-menu { opacity: 1 !important; visibility: visible !important; transform: translateY(0) !important; pointer-events: auto !important; }
+      /* Submenu item styling */
+      .sub-menu li { list-style: none; margin: 0; padding: 0; }
+      .sub-menu a { display: block !important; padding: 10px 16px !important; color: var(--text-dark, #333) !important; font-weight: 500; text-decoration: none; white-space: nowrap; transition: background-color 0.2s; }
+      .sub-menu .zappy-nav-child > a { padding-left: 28px !important; font-size: 0.9em !important; opacity: 0.85 !important; }
+      [dir="rtl"] .sub-menu .zappy-nav-child > a, html[lang="he"] .sub-menu .zappy-nav-child > a, html[lang="ar"] .sub-menu .zappy-nav-child > a { padding-left: 10px !important; padding-right: 28px !important; }
+      .sub-menu .zappy-nav-parent > a { font-weight: 600 !important; }
+      .sub-menu a:hover { background-color: #f5f5f5; }
+      /* RTL (Hebrew/Arabic) dropdown positioning */
+      [dir="rtl"] .nav-menu .sub-menu, [dir="rtl"] nav .sub-menu, [dir="rtl"] .navbar .sub-menu, html[lang="he"] .nav-menu .sub-menu, html[lang="he"] nav .sub-menu, html[lang="he"] .navbar .sub-menu, html[lang="ar"] .nav-menu .sub-menu, html[lang="ar"] nav .sub-menu, html[lang="ar"] .navbar .sub-menu { left: auto !important; right: 0 !important; }
+      /* Hide empty dropdown menus (exclude catalog sub-menus that use <a> children instead of <li>) */
+      .sub-menu:empty, .sub-menu:not(:has(li:not(.zappy-hidden-menu-item))):not(:has(> a)), .sub-menu:not(:has(li)):not(:has(> a)) { display: none !important; opacity: 0 !important; visibility: hidden !important; pointer-events: none !important; }
+      /* Desktop: show submenu on Menu Group hover */
+      li:has(.menu-group-title):hover > .sub-menu { opacity: 1 !important; visibility: visible !important; transform: translateY(0) !important; pointer-events: auto !important; }
+      /* Menu Group title styling */
+      .nav-menu > li > .menu-group-title, #navMenu > li > .menu-group-title { display: inline-block; padding: 0.5rem 1rem; cursor: default; user-select: none; }
+      
+      /* ========== MOBILE SUBMENU STYLES ========== */
+      @media (max-width: 768px) {
+        .nav-menu .sub-menu, nav .sub-menu, .navbar .sub-menu, #navMenu .sub-menu { position: static !important; transform: none !important; box-shadow: none !important; background: transparent !important; max-height: 0; overflow: hidden; opacity: 0; visibility: hidden; transition: max-height 0.3s ease, opacity 0.3s ease; padding: 0 !important; border-radius: 0 !important; }
+        .navbar .sub-menu.mobile-expanded, .nav-menu .sub-menu.mobile-expanded, #navMenu .sub-menu.mobile-expanded { max-height: none !important; overflow-y: visible !important; opacity: 1 !important; visibility: visible !important; padding: 8px 0 8px 16px !important; }
+        [dir="rtl"] .sub-menu.mobile-expanded, html[lang="he"] .sub-menu.mobile-expanded { padding: 8px 16px 8px 0 !important; }
+        /* Disable hover behavior on mobile */
+        .nav-menu li:hover > .sub-menu, nav li:hover > .sub-menu, .navbar li:hover > .sub-menu, #navMenu li:hover > .sub-menu { opacity: 0; visibility: hidden; pointer-events: none; }
+        .nav-menu li > .sub-menu.mobile-expanded, nav li > .sub-menu.mobile-expanded, .navbar li > .sub-menu.mobile-expanded, #navMenu li > .sub-menu.mobile-expanded { opacity: 1 !important; visibility: visible !important; pointer-events: auto !important; }
+        .nav-menu li:has(.sub-menu), nav li:has(.sub-menu), .navbar li:has(.sub-menu), #navMenu li:has(.sub-menu) { display: flex !important; flex-wrap: wrap !important; align-items: center !important; position: relative !important; min-height: 44px !important; }
+        .nav-menu li:has(.sub-menu) > a, nav li:has(.sub-menu) > a, .navbar li:has(.sub-menu) > a, #navMenu li:has(.sub-menu) > a { flex: 1 !important; min-width: 0 !important; }
+        .nav-menu li:has(.sub-menu) > .menu-group-title, nav li:has(.sub-menu) > .menu-group-title, .navbar li:has(.sub-menu) > .menu-group-title, #navMenu li:has(.sub-menu) > .menu-group-title { flex: 1 !important; min-width: 0 !important; padding: 0 !important; line-height: inherit !important; }
+        .nav-menu li:has(.sub-menu) > .sub-menu, nav li:has(.sub-menu) > .sub-menu, .navbar li:has(.sub-menu) > .sub-menu, #navMenu li:has(.sub-menu) > .sub-menu { flex-basis: 100% !important; width: 100% !important; }
+        .nav-menu li:has(.sub-menu) > a [class*="chevron"], .nav-menu li:has(.sub-menu) > a [class*="arrow"], .nav-menu li:has(.sub-menu) > a .fa-chevron-down, .nav-menu li:has(.sub-menu) > a .fa-angle-down, nav li:has(.sub-menu) > a [class*="chevron"], nav li:has(.sub-menu) > a [class*="arrow"], #navMenu li:has(.sub-menu) > a [class*="chevron"], #navMenu li:has(.sub-menu) > a [class*="arrow"] { display: none !important; visibility: hidden !important; }
+        .mobile-submenu-toggle { display: flex !important; align-items: center !important; justify-content: center !important; width: 44px !important; height: auto !important; background: transparent !important; border: none !important; cursor: pointer !important; color: var(--text-light) !important; position: static !important; flex-shrink: 0 !important; align-self: stretch !important; z-index: 2 !important; padding: 0 !important; margin: 0 !important; }
+        .mobile-submenu-toggle::after { content: '' !important; width: 0 !important; height: 0 !important; border-left: 6px solid transparent !important; border-right: 6px solid transparent !important; border-top: 7px solid currentColor !important; transition: transform 0.3s ease !important; }
+        .mobile-submenu-toggle.expanded::after { transform: rotate(180deg) !important; }
+        .sub-menu a { padding: 10px 0 !important; display: block !important; color: var(--text-light) !important; white-space: normal !important; }
+        .sub-menu .zappy-nav-child > a { padding-left: 28px !important; font-size: 0.9em !important; opacity: 0.85 !important; }
+        [dir="rtl"] .sub-menu .zappy-nav-child > a, html[lang="he"] .sub-menu .zappy-nav-child > a, html[lang="ar"] .sub-menu .zappy-nav-child > a { padding-left: 0 !important; padding-right: 28px !important; }
+        .sub-menu .zappy-nav-parent > a { font-weight: 600 !important; }
+        .nav-menu.active, #navMenu.active { max-width: 100vw !important; overflow-x: hidden !important; box-sizing: border-box !important; }
+        .navbar .sub-menu li a, nav.navbar .sub-menu li a, .zappy-products-dropdown .sub-menu a { color: var(--text-light) !important; }
+      }
+      @media (min-width: 769px) { .mobile-submenu-toggle { display: none !important; } }
+    </style>
+
+    <style id="zappy-widget-visibility">
+      #mic-access-tool-general-button, .mic-access-tool-general-button,
+      #mic-init-access-tool .mic-access-tool-general-button, #mic-init-access-tool #mic-access-tool-general-button,
+      ._access-icon, #mic-access-tool-box, .mic-access-tool-box,
+      #mic-init-access-tool #mic-access-tool-box, div[id*="mic-access-tool-box"], ._access-menu {
+        display: none !important; visibility: hidden !important; opacity: 0 !important; pointer-events: none !important;
+      }
+    </style>
+</head>
+<body>
+
+
+    <div class="mobile-search-panel" id="mobile-search-panel">
+      <div class="search-wrapper">
+        <input type="text" id="mobile-search-input" placeholder="חיפוש מוצרים..." autocomplete="off">
+        <button class="search-submit" id="mobile-search-submit" title="חיפוש">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><path d="M21 21l-4.35-4.35"></path></svg>
+        </button>
+        <button class="close-search" id="close-mobile-search">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"></path></svg>
+        </button>
+      </div>
+      <div class="search-results" id="mobile-search-results"></div>
+    </div>
+  
+<script>window.ZAPPY_WEBSITE_ID = "f01aa9d1-e16d-4aea-a5d8-49d67d0d4cd7";window.ZAPPY_API_BASE = (window.location.pathname.includes('/preview') ? "https://api.zappy5.com" : "https://api.zappy5.com");</script>
+  <nav class="navbar" dir="rtl">
+  <button class="mobile-toggle" id="mobileToggle" aria-label="Menu">
+    <svg class="hamburger-icon" width="24" height="24" viewBox="0 0 24 24" fill="none">
+      <path d="M3 12h18M3 6h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+    </svg>
+    <svg class="close-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" style="display: none;">
+      <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+    </svg>
+  </button>
+
+  <button class="phone-header-btn" data-phone="[business_phone]" aria-label="Call">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+    </svg>
+  </button>
+
+  <div class="nav-container">
+    <div class="nav-right-group"><div class="nav-brand">
+      <a href="/" class="logo-link">
+        <img src="/assets/logo.webp" alt="החוסך" class="logo">
+      </a>
+    </div><ul class="nav-menu" id="navMenu">
+
+    <li class="menu-item-has-children zappy-products-dropdown">
+      <a href="/products">
+        מוצרים
+        <svg class="dropdown-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M6 9l6 6 6-6"></path>
+        </svg>
+      </a>
+      <ul class="sub-menu" id="zappy-nav-category-links">
+        <li><a href="/products">כל המוצרים</a></li>
+        <!-- Categories will be loaded dynamically -->
+      </ul>
+    </li>
+  <li><a href="/customization-quality">התאמה אישית ואיכות</a></li><li><a href="/community-trust">אמון הקהילה</a></li><li><a href="/contact">צור קשר</a></li></ul><div class="nav-ecommerce-icons nav-icons-left"><a href="/login" class="login-link nav-login" title="התחברות"><svg class="login-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></a><a href="#cart" class="cart-link nav-cart" id="cart-drawer-toggle" title="עגלת קניות"><svg class="cart-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg><span class="cart-count">0</span></a><div class="nav-search-box">
+    <input type="text" class="nav-search-input" id="nav-search-input" placeholder="חיפוש מוצרים..." autocomplete="off">
+    <button class="nav-search-btn" id="nav-search-btn" title="חיפוש">
+      <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><path d="M21 21l-4.35-4.35"></path></svg>
+    </button>
+    <div class="nav-search-results" id="nav-search-results"></div>
+  </div></div><div class="nav-ecommerce-icons nav-icons-right"><button class="nav-search-toggle" id="mobile-search-toggle" title="חיפוש"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><path d="M21 21l-4.35-4.35"></path></svg></button></div></div>
+
+    
+
+    
+  </div>
+</nav>
+
+    <nav class="zappy-catalog-menu rtl" id="zappy-catalog-menu" dir="rtl" style="display:none">
+      <div class="catalog-menu-container">
+        <a href="/products" class="catalog-menu-item catalog-menu-all">כל המוצרים</a>
+        <div class="catalog-menu-categories" id="zappy-category-links">
+          <!-- Categories will be loaded dynamically -->
+        </div>
+      </div>
+    </nav>
+  
+<script>
+
+// Navbar Mobile Menu Toggle and Contrast Fix
+(function() {
+  // Use 'load' event instead of 'DOMContentLoaded' to ensure we run AFTER all other scripts
+  window.addEventListener('load', function() {
+    
+    // FIX MOBILE BUTTON CONTRAST
+    // Detect navbar background color and apply contrasting color to mobile buttons
+    const navbar = document.querySelector('.navbar, nav, header');
+    if (!navbar) {
+      console.log('[Navbar] Navbar element not found');
+      return;
+    }
+    
+    // DECLARE VARIABLES EARLY to avoid Temporal Dead Zone errors
+    // These are used in multiple places below
+    let mobileToggle = document.getElementById('mobileToggle') ||
+                       document.querySelector('.mobile-toggle') ||
+                       document.querySelector('.hamburger') ||
+                       document.querySelector('.hamburger-menu') ||
+                       document.querySelector('.menu-toggle') ||
+                       document.querySelector('.burger-menu') ||
+                       document.querySelector('[aria-label="Menu"]') ||
+                       document.querySelector('[aria-label="תפריט"]');
+    
+    const phoneBtn = document.querySelector('.phone-header-btn');
+    
+    const computedStyle = window.getComputedStyle(navbar);
+    let bgColor = computedStyle.backgroundColor;
+    
+    console.log('[Navbar] Initial navbar background:', bgColor);
+    
+    // Check if background is transparent or rgba with 0 alpha
+    const isTransparent = bgColor === 'transparent' || 
+                         bgColor === 'rgba(0, 0, 0, 0)' ||
+                         (bgColor.startsWith('rgba') && bgColor.includes(', 0)'));
+    
+    if (isTransparent) {
+      // Check for background-image or gradient
+      const bgImage = computedStyle.backgroundImage;
+      if (bgImage && bgImage !== 'none') {
+        console.log('[Navbar] Navbar has background image/gradient, using dark text');
+        bgColor = 'rgb(240, 240, 240)'; // Assume light background
+      } else {
+        // Transparent navbar - check body background
+        const bodyBg = window.getComputedStyle(document.body).backgroundColor;
+        console.log('[Navbar] Navbar transparent, using body background:', bodyBg);
+        bgColor = bodyBg;
+      }
+    }
+    
+    // Calculate luminance to determine if background is light or dark
+    const rgb = bgColor.match(/\d+/g);
+    if (rgb && rgb.length >= 3) {
+      const r = parseInt(rgb[0]);
+      const g = parseInt(rgb[1]);
+      const b = parseInt(rgb[2]);
+      const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+      
+      // Mobile button colors are set by Claude's AI-generated CSS (same as .nav-menu a)
+      // No dynamic color overrides needed - colors come from the generated navbar CSS
+      console.log('[Navbar] Mobile button colors preserved from Claude CSS (luminance:', luminance.toFixed(2) + ')');
+      
+      // FIX ICON SIZES - Ensure SVGs are properly sized and visible
+      // INJECT CRITICAL CSS TO OVERRIDE ANY CONFLICTING RULES
+      const criticalCSS = document.createElement('style');
+      criticalCSS.id = 'zappy-mobile-nav-fix';
+      const htmlLang = document.documentElement.lang || 'en';
+      const htmlDir = document.documentElement.dir || 'ltr';
+      // Check both dir attribute AND lang for RTL detection
+      // dir="rtl" is the most reliable indicator
+      const isRTL = htmlDir === 'rtl' || htmlLang === 'he' || htmlLang === 'ar';
+      
+      criticalCSS.textContent = `
+        /* Hide mobile buttons on desktop, show only on mobile */
+        @media (min-width: 769px) {
+          .mobile-toggle,
+          .phone-header-btn {
+            display: none !important;
+          }
+        }
+        
+        /* Show and position mobile buttons correctly on mobile */
+        @media (max-width: 768px) {
+          .mobile-toggle,
+          .phone-header-btn {
+            position: absolute !important;
+            top: 50% !important;
+            transform: translateY(-50%) !important;
+            z-index: 1001 !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            width: 36px !important;
+            height: 36px !important;
+            border-radius: 50% !important;
+            border: none !important;
+            cursor: pointer !important;
+            padding: 6px !important;
+            background: none !important;
+            color: var(--nav-text, var(--text-light)) !important;
+          }
+          
+          /* LTR positioning (default): hamburger LEFT, phone RIGHT */
+          html:not([dir="rtl"]):not([lang="he"]):not([lang="ar"]) .mobile-toggle,
+          html[dir="ltr"] .mobile-toggle {
+            left: 12px !important;
+            right: auto !important;
+          }
+          html:not([dir="rtl"]):not([lang="he"]):not([lang="ar"]) .phone-header-btn,
+          html[dir="ltr"] .phone-header-btn {
+            right: 12px !important;
+            left: auto !important;
+          }
+          
+          /* RTL positioning: hamburger RIGHT, phone LEFT */
+          html[dir="rtl"] .mobile-toggle,
+          html[lang="he"] .mobile-toggle,
+          html[lang="ar"] .mobile-toggle {
+            right: 12px !important;
+            left: auto !important;
+          }
+          html[dir="rtl"] .phone-header-btn,
+          html[lang="he"] .phone-header-btn,
+          html[lang="ar"] .phone-header-btn {
+            left: 12px !important;
+            right: auto !important;
+          }
+          
+          /* CRITICAL: Ensure nav-container has min-height on mobile */
+          /* All children are positioned absolutely/fixed on mobile, so height:auto collapses to 0 */
+          .nav-container {
+            min-height: 70px !important;
+            position: relative !important;
+          }
+          
+          /* Ensure SVG icons are properly sized and inherit color */
+          .mobile-toggle svg,
+          .phone-header-btn svg {
+            width: 24px !important;
+            height: 24px !important;
+            /* Don't force display - let JavaScript control hamburger/close toggle */
+          }
+          
+          /* Reset nav-cta-container on mobile - remove desktop box-shadow/padding */
+          /* that creates a visible ghost box when CTA button is hidden */
+          .nav-cta-container {
+            box-shadow: none !important;
+            padding: 0 !important;
+          }
+          
+          /* Hide nav-cta-container entirely on mobile when there's no lang-switcher */
+          /* (only the CTA button is inside, and it's hidden on mobile) */
+          .nav-cta-container:not(:has(.lang-switcher)) {
+            display: none !important;
+          }
+          
+          /* CRITICAL: Prevent hero image fade gradient from bleeding over headline text */
+          /* The .image-fade-gradient has bottom: -30px (extends below parent) */
+          /* On mobile stacked layout, this overlaps the h1 text below the image */
+          .hero-image-column {
+            overflow: hidden !important;
+          }
+          .image-fade-gradient {
+            bottom: 0 !important;
+          }
+          
+          /* Hide desktop language switcher on mobile - hamburger menu handles it */
+          /* High specificity to override stored CSS */
+          .lang-switcher,
+          .nav-cta-container .lang-switcher,
+          .nav-container .lang-switcher,
+          .navbar .lang-switcher,
+          .navbar .nav-cta-container .lang-switcher {
+            display: none !important;
+          }
+        }
+      `;
+      
+      // Remove existing fix if present and inject new one
+      const existing = document.getElementById('zappy-mobile-nav-fix');
+      if (existing) existing.remove();
+      document.head.appendChild(criticalCSS);
+      
+      console.log('[Navbar] Critical CSS injected for mobile nav positioning');
+      
+      // ONLY apply inline positioning styles on mobile viewport
+      // On desktop, the CSS handles hiding these buttons with display: none
+      // Inline styles were breaking desktop layout by overriding CSS
+      const isMobileViewport = window.innerWidth <= 768;
+      
+      if (mobileToggle) {
+        // Icon sizing applies to all viewports for consistency
+        const hamburgerIcon = mobileToggle.querySelector('.hamburger-icon');
+        const closeIcon = mobileToggle.querySelector('.close-icon');
+        
+        if (hamburgerIcon) {
+          hamburgerIcon.style.setProperty('width', '24px', 'important');
+          hamburgerIcon.style.setProperty('height', '24px', 'important');
+          hamburgerIcon.style.setProperty('display', 'block', 'important'); // Show hamburger by default
+        }
+        if (closeIcon) {
+          closeIcon.style.setProperty('width', '24px', 'important');
+          closeIcon.style.setProperty('height', '24px', 'important');
+          closeIcon.style.setProperty('display', 'none', 'important'); // Hide close icon by default
+        }
+        
+        // ONLY set positioning inline styles on mobile
+        if (isMobileViewport) {
+          mobileToggle.style.setProperty('position', 'absolute', 'important');
+          mobileToggle.style.setProperty('top', '50%', 'important');
+          mobileToggle.style.setProperty('transform', 'translateY(-50%)', 'important');
+          mobileToggle.style.setProperty('z-index', '1001', 'important');
+          
+          // Clear any inline left/right so CSS can take over based on html[dir]
+          mobileToggle.style.removeProperty('left');
+          mobileToggle.style.removeProperty('right');
+          
+          console.log('[Navbar] Mobile toggle positioning applied (mobile viewport)');
+        } else {
+          // On desktop, clear any positioning styles to let CSS handle it
+          mobileToggle.style.removeProperty('position');
+          mobileToggle.style.removeProperty('top');
+          mobileToggle.style.removeProperty('transform');
+          mobileToggle.style.removeProperty('z-index');
+          mobileToggle.style.removeProperty('left');
+          mobileToggle.style.removeProperty('right');
+          console.log('[Navbar] Desktop viewport - cleared mobile toggle inline positioning');
+        }
+      }
+      
+      if (phoneBtn) {
+        // Icon sizing applies to all viewports
+        const phoneIcon = phoneBtn.querySelector('svg');
+        if (phoneIcon) {
+          phoneIcon.style.width = '24px';
+          phoneIcon.style.height = '24px';
+          phoneIcon.setAttribute('width', '24');
+          phoneIcon.setAttribute('height', '24');
+        }
+        
+        // ONLY set positioning inline styles on mobile
+        if (isMobileViewport) {
+          phoneBtn.style.setProperty('position', 'absolute', 'important');
+          phoneBtn.style.setProperty('top', '50%', 'important');
+          phoneBtn.style.setProperty('transform', 'translateY(-50%)', 'important');
+          phoneBtn.style.setProperty('z-index', '1001', 'important');
+          
+          // Clear any inline left/right so CSS can take over based on html[dir]
+          phoneBtn.style.removeProperty('left');
+          phoneBtn.style.removeProperty('right');
+          
+          console.log('[Navbar] Phone button positioning applied (mobile viewport)');
+        } else {
+          // On desktop, clear any positioning styles to let CSS handle it
+          phoneBtn.style.removeProperty('position');
+          phoneBtn.style.removeProperty('top');
+          phoneBtn.style.removeProperty('transform');
+          phoneBtn.style.removeProperty('z-index');
+          phoneBtn.style.removeProperty('left');
+          phoneBtn.style.removeProperty('right');
+          console.log('[Navbar] Desktop viewport - cleared phone button inline positioning');
+        }
+      }
+    } else {
+      console.log('[Navbar] Could not parse background color:', bgColor);
+    }
+    
+    // MOBILE MENU TOGGLE
+    // Re-query in case DOM changed (mobileToggle already declared at top of function)
+    mobileToggle = document.getElementById('mobileToggle') ||
+                   document.querySelector('.mobile-toggle') ||
+                   document.querySelector('.hamburger') ||
+                   document.querySelector('.hamburger-menu') ||
+                   document.querySelector('.menu-toggle') ||
+                   document.querySelector('.burger-menu') ||
+                   document.querySelector('[aria-label="Menu"]') ||
+                   document.querySelector('[aria-label="תפריט"]');
+    
+    // EXPANDED SEARCH: Find nav menu by ID or class
+    const navMenu = document.getElementById('navMenu') ||
+                  document.querySelector('.nav-menu') ||
+                  document.querySelector('.nav-links') ||
+                  document.querySelector('nav ul:not(.submenu)');
+    
+    if (!mobileToggle || !navMenu) {
+      console.log('[Navbar] Mobile toggle or menu not found:', { toggle: !!mobileToggle, menu: !!navMenu });
+      return;
+    }
+    
+    // Ensure navMenu has ID for CSS targeting
+    if (!navMenu.id) {
+      navMenu.id = 'navMenu';
+    }
+    
+    console.log('[Navbar] Initializing mobile menu...');
+    
+    // Remove any existing event listeners by cloning the button
+    const newToggle = mobileToggle.cloneNode(true);
+    mobileToggle.parentNode.replaceChild(newToggle, mobileToggle);
+    
+    // Toggle menu on button click - use newToggle now
+    newToggle.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      
+      const hamburgerIcon = this.querySelector('.hamburger-icon');
+      const closeIcon = this.querySelector('.close-icon');
+      const isActive = navMenu.classList.contains('active');
+      
+      if (isActive) {
+        // Close menu
+        navMenu.classList.remove('active');
+        if (hamburgerIcon) hamburgerIcon.style.setProperty('display', 'block', 'important');
+        if (closeIcon) closeIcon.style.setProperty('display', 'none', 'important');
+        document.body.style.overflow = '';
+        console.log('[Navbar] Menu closed');
+      } else {
+        // Open menu
+        navMenu.classList.add('active');
+        if (hamburgerIcon) hamburgerIcon.style.setProperty('display', 'none', 'important');
+        if (closeIcon) closeIcon.style.setProperty('display', 'block', 'important');
+        document.body.style.overflow = 'hidden';
+        console.log('[Navbar] Menu opened');
+      }
+    });
+    
+    // Close menu when clicking nav links (but NOT dropdown toggles)
+    const navLinks = navMenu.querySelectorAll('a');
+    navLinks.forEach(function(link) {
+      link.addEventListener('click', function() {
+        // Don't close if it's a dropdown child (unless it's a real navigation link)
+        if (this.getAttribute('href') === '#') return;
+        
+        const hamburgerIcon = newToggle.querySelector('.hamburger-icon');
+        const closeIcon = newToggle.querySelector('.close-icon');
+        
+        navMenu.classList.remove('active');
+        if (hamburgerIcon) hamburgerIcon.style.setProperty('display', 'block', 'important');
+        if (closeIcon) closeIcon.style.setProperty('display', 'none', 'important');
+        document.body.style.overflow = '';
+        console.log('[Navbar] Menu closed (link clicked)');
+      });
+    });
+    
+    // DROPDOWN MENU TOGGLE (for mobile and touch devices)
+    var dropdownToggles = navMenu.querySelectorAll('.dropdown-toggle');
+    dropdownToggles.forEach(function(toggle) {
+      toggle.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var parent = this.closest('.nav-dropdown');
+        if (!parent) return;
+        
+        // Close other open dropdowns at the same level
+        var siblings = parent.parentNode.querySelectorAll('.nav-dropdown.open');
+        siblings.forEach(function(sib) {
+          if (sib !== parent) sib.classList.remove('open');
+        });
+        
+        parent.classList.toggle('open');
+        console.log('[Navbar] Dropdown toggled:', parent.classList.contains('open') ? 'open' : 'closed');
+      });
+    });
+    
+    // Close dropdowns when clicking outside
+    document.addEventListener('click', function(e) {
+      if (!e.target.closest('.nav-dropdown')) {
+        var openDropdowns = document.querySelectorAll('.nav-dropdown.open');
+        openDropdowns.forEach(function(dd) { dd.classList.remove('open'); });
+      }
+    });
+    
+    console.log('[Navbar] Dropdown handlers initialized for ' + dropdownToggles.length + ' dropdowns');
+    
+    // Phone button functionality (phoneBtn already declared at top of function)
+    if (phoneBtn) {
+      phoneBtn.addEventListener('click', function() {
+        // Get phone number from placeholder in page or use default
+        const phoneLinks = document.querySelectorAll('a[href^="tel:"]');
+        const phoneNumber = phoneLinks.length > 0 
+          ? phoneLinks[0].getAttribute('href').replace('tel:', '')
+          : '[business_phone]';
+        
+        window.location.href = 'tel:' + phoneNumber;
+        console.log('[Navbar] Phone button clicked');
+      });
+    }
+    
+    console.log('[Navbar] Mobile menu initialized successfully');
+    
+    // === WHATSAPP BUTTON VISIBILITY FIX ===
+    // Ensure WhatsApp floating button is hidden on desktop and visible on mobile
+    // IMPORTANT: Only target the floating button by its class, NOT generic wa.me links
+    const handleWhatsAppVisibility = function() {
+      const whatsappBtn = document.querySelector('.whatsapp-float');
+      if (whatsappBtn) {
+        const isDesktop = window.innerWidth >= 769;
+        if (isDesktop) {
+          whatsappBtn.style.setProperty('display', 'none', 'important');
+          whatsappBtn.style.setProperty('visibility', 'hidden', 'important');
+          whatsappBtn.style.setProperty('opacity', '0', 'important');
+          whatsappBtn.style.setProperty('pointer-events', 'none', 'important');
+          console.log('[WhatsApp] Button hidden on desktop');
+        } else {
+          whatsappBtn.style.removeProperty('display');
+          whatsappBtn.style.removeProperty('visibility');
+          whatsappBtn.style.removeProperty('opacity');
+          whatsappBtn.style.removeProperty('pointer-events');
+          console.log('[WhatsApp] Button visible on mobile');
+        }
+      }
+    };
+    
+    // Run on load
+    handleWhatsAppVisibility();
+    
+    // Run on resize with debouncing
+    let resizeTimer;
+    window.addEventListener('resize', function() {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(handleWhatsAppVisibility, 100);
+    });
+  });
+})();
+
+</script>
+  
+  <main>
+    <section class="community-trust-statement-section" data-layout-spec="אמון הקהילה-statement" dir="rtl">
+  <div class="cts-container">
+    <!-- Intro Block -->
+    <div class="cts-intro">
+      <span class="cts-eyebrow">אמון שנבנה אחד לאחד</span>
+      <h1 class="cts-heading">הקהילה שלנו<br>נבנתה על המלצות,<br>לא על פרסומות</h1>
+      <p class="cts-subtext">בשוק מלא בהבטחות ריקות ותמונות מושקעות שלא משקפות את המציאות, החוסך בחר בדרך אחרת לגמרי. כל לקוח חדש הגיע אלינו דרך לקוח מרוצה שהמליץ בכל ליבו — כי כשמקבלים מוצר אמיתי עם ייעוץ אישי שלא קיים במקום אחר, לא מחכים שיבקשו להמליץ. עושים את זה מאליו.</p>
+    </div>
+
+    <!-- Divider Line -->
+    <div class="cts-rule" aria-hidden="true"></div>
+
+    <!-- Trust Proof Row -->
+    <div class="cts-proof-row">
+      <!-- Item 1 -->
+      <article class="cts-proof-item">
+        <div class="cts-proof-icon-wrap">
+          <svg data-element-type="icon" data-icon-type="svg" width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <circle cx="18" cy="18" r="17" stroke="currentColor" stroke-width="1.2"></circle>
+            <path d="M12 18.5c1.5 1.8 3.2 3.2 6 3.2s4.5-1.4 6-3.2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+            <circle cx="13.5" cy="14.5" r="1.5" fill="currentColor"></circle>
+            <circle cx="22.5" cy="14.5" r="1.5" fill="currentColor"></circle>
+          </svg>
+        </div>
+        <div class="cts-proof-content">
+          <h3 class="cts-proof-title">שביעות רצון אמיתית</h3>
+          <p class="cts-proof-text">לקוחות החוסך לא רק מרוצים — הם הופכים לשגרירים. כל עסקה מסתיימת בחיוך ובהמלצה חמה לחברים ולמשפחה.</p>
+        </div>
+      </article>
+
+      <!-- Vertical Separator -->
+      <div class="cts-separator" aria-hidden="true"></div>
+
+      <!-- Item 2 -->
+      <article class="cts-proof-item">
+        <div class="cts-proof-icon-wrap">
+          <svg data-element-type="icon" data-icon-type="svg" width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <circle cx="18" cy="18" r="17" stroke="currentColor" stroke-width="1.2"></circle>
+            <path d="M11 18l5 5 9-9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+        </div>
+        <div class="cts-proof-content">
+          <h3 class="cts-proof-title">המלצות בלבד — אפס פרסום</h3>
+          <p class="cts-proof-text">הקהילה שלנו גדלה אך ורק מפה לאוזן. ללא קמפיינים מטעים, ללא הבטחות מנופחות — רק לקוחות שמספרים על חוויה אמיתית.</p>
+        </div>
+      </article>
+
+      <!-- Vertical Separator -->
+      <div class="cts-separator" aria-hidden="true"></div>
+
+      <!-- Item 3 -->
+      <article class="cts-proof-item">
+        <div class="cts-proof-icon-wrap">
+          <svg data-element-type="icon" data-icon-type="svg" width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <circle cx="18" cy="18" r="17" stroke="currentColor" stroke-width="1.2"></circle>
+            <path d="M18 11v7l4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+        </div>
+        <div class="cts-proof-content">
+          <h3 class="cts-proof-title">אחריות מלאה בכל שלב</h3>
+          <p class="cts-proof-text">מהייעוץ האישי הראשון ועד לאחר קבלת המוצר — אנחנו כאן. שקיפות מלאה, מחויבות אמיתית, ואין מקום לאכזבות.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+
+  <!-- Bottom Gradient Divider into dark section -->
+  <div class="cts-divider-wrapper" aria-hidden="true">
+    <svg data-no-icon-edit="true" aria-hidden="true" viewBox="0 0 1200 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,80 L0,45 Q150,30 300,42 T600,32 Q750,28 900,40 T1200,38 L1200,80 Z" fill="#0A0A0A"></path>
+    </svg>
+  </div>
+</section>
+
+<section class="community-trust-success-stories-section" data-layout-spec="אמון הקהילה-success-stories" dir="rtl">
+  <div class="ss-container">
+    <!-- Section Header -->
+    <div class="ss-header">
+      <div class="ss-gold-rule" aria-hidden="true">
+        <span class="ss-gold-line"></span>
+        <span class="ss-gold-diamond"></span>
+        <span class="ss-gold-line"></span>
+      </div>
+      <h2 class="ss-heading">סיפורי הצלחה אמיתיים</h2>
+      <p class="ss-subheading">לקוחות שבחרו נכון — וזכו לתוצאה שלא ציפו לה</p>
+    </div>
+
+    <!-- Stories Grid -->
+    <div class="ss-grid">
+
+      <!-- Story 1: Young Couple -->
+      <article class="ss-card ss-card--left">
+        <div class="ss-card-image-wrap">
+          <img data-placeholder="community-trust-success-stories-image-1" data-context="A warm, cinematic interior photo of a beautifully furnished new apartment living room with custom sofa, modern wooden coffee table, and stylish rug — warm golden lighting, high-end Israeli home design aesthetic, premium furniture, real quality materials, dark editorial mood" width="560" height="380" src="/assets/site-community-trust-success-stories-image-1.webp" alt="זוג צעיר בדירה חדשה עם ריהוט מותאם אישית" class="ss-card-img">
+          <div class="ss-card-img-overlay" aria-hidden="true"></div>
+        </div>
+        <div class="ss-card-body">
+          <span class="ss-card-tag">זוג צעיר | דירה חדשה</span>
+          <h3 class="ss-card-title">מהבלבול לבית שחלמנו עליו</h3>
+          <div class="ss-card-story">
+            <div class="ss-story-block ss-story-situation">
+              <span class="ss-story-label">המצב</span>
+              <p>רוני ושירה רכשו את דירתם הראשונה ולא ידעו מאין להתחיל. הם סקרו אינסוף אתרים, ראו תמונות מרהיבות — ולאחר הזמנה גילו שהמוצר שהגיע לא מזכיר מה שהוצג. אכזבה קשה, כסף שירד לטמיון.</p>
+            </div>
+            <div class="ss-story-block ss-story-solution">
+              <span class="ss-story-label">הגישה</span>
+              <p>הם הגיעו ל<strong>החוסך</strong> לאחר המלצה של חבר. קיבלו ייעוץ עיצוב בית אישי מלא — בחרו גוונים, מידות, בד ספה, ומסגרת מיטה — הכל בהתאמה אישית מחומרי גלם איכותיים.</p>
+            </div>
+            <div class="ss-story-block ss-story-result">
+              <span class="ss-story-label">התוצאה</span>
+              <p>"לא האמנו שאפשר לקבל ריהוט כזה באיכות הזו במחיר הזה. זה בדיוק מה שדמיינו — ואפילו יותר טוב."</p>
+            </div>
+          </div>
+          <div class="ss-card-quote-mark" aria-hidden="true">"</div>
+        </div>
+      </article>
+
+      <!-- Story 2: Homeowners Upgrading (CENTRAL — FEATURED) -->
+      <article class="ss-card ss-card--center ss-card--featured">
+        <div class="ss-card-image-wrap ss-card-image-wrap--tall">
+          <img data-placeholder="community-trust-success-stories-image-2" data-context="A stunning cinematic interior of a renovated Israeli family home dining and living area — custom wooden dining table, elegant upholstered chairs, dramatic pendant lighting, warm tones, premium materials, high-end home design gallery quality, editorial photography style with deep shadows and warm highlights" width="600" height="480" src="/assets/site-community-trust-success-stories-image-2.webp" alt="בית משפחתי משודרג עם ריהוט מותאם אישית מהחוסך" class="ss-card-img">
+          <div class="ss-card-img-overlay" aria-hidden="true"></div>
+          <div class="ss-featured-badge" aria-label="סיפור מומלץ">★ סיפור נבחר</div>
+        </div>
+        <div class="ss-card-body">
+          <span class="ss-card-tag">בעלי בית | שדרוג כולל</span>
+          <h3 class="ss-card-title">הבית שלנו — סוף סוף בית</h3>
+          <div class="ss-card-story">
+            <div class="ss-story-block ss-story-situation">
+              <span class="ss-story-label">המצב</span>
+              <p>משפחת כהן חיה שנים עם ריהוט שהפסיק לשרת אותם. הם ידעו שהם רוצים שינוי אמיתי, אבל חששו מהתהליך, מהמחיר, ומאיכות מה שיקבלו.</p>
+            </div>
+            <div class="ss-story-block ss-story-solution">
+              <span class="ss-story-label">הגישה</span>
+              <p>עם ייעוץ אישי מעמיק מיניב, הם תכננו מחדש את הסלון ופינת האוכל. כל פריט עוצב מאפס — עץ, בד, גוון — ספקים מהשורה הראשונה בלבד, חומרי גלם שמחזיקים לאורך שנים.</p>
+            </div>
+            <div class="ss-story-block ss-story-result">
+              <span class="ss-story-label">התוצאה</span>
+              <p>"חיסכנו כסף אמיתי לעומת הצעות אחרות שקיבלנו — ואיכות המוצר גבוהה פי כמה. כל מי שנכנס לבית שואל אותנו מאיפה הריהוט."</p>
+            </div>
+          </div>
+          <div class="ss-card-quote-mark" aria-hidden="true">"</div>
+        </div>
+      </article>
+
+      <!-- Story 3: Online vs Quality -->
+      <article class="ss-card ss-card--right">
+        <div class="ss-card-image-wrap">
+          <img data-placeholder="community-trust-success-stories-image-3" data-context="A before-and-after style cinematic interior shot showing a premium custom bedroom with high-quality upholstered headboard, quality bedding, and elegant side tables — dark moody editorial lighting, premium Israeli home design, real materials, no cheap online furniture aesthetics" width="560" height="380" src="/assets/site-community-trust-success-stories-image-3.webp" alt="חדר שינה עם ריהוט איכותי מותאם אישית" class="ss-card-img">
+          <div class="ss-card-img-overlay" aria-hidden="true"></div>
+        </div>
+        <div class="ss-card-body">
+          <span class="ss-card-tag">השוואה אמיתית | אונליין מול איכות</span>
+          <h3 class="ss-card-title">קניתי נכון — חסכתי המון</h3>
+          <div class="ss-card-story">
+            <div class="ss-story-block ss-story-situation">
+              <span class="ss-story-label">המצב</span>
+              <p>אורן ראה ברשתות החברתיות מיטה "מושלמת" במחיר שנראה טוב מדי מכדי להיות אמיתי. הוא הזמין — וקיבל מוצר שהתפרק תוך שלושה חודשים. כסף ירד לטמיון, ועצבים גם.</p>
+            </div>
+            <div class="ss-story-block ss-story-solution">
+              <span class="ss-story-label">הגישה</span>
+              <p>הפעם הגיע ל<strong>החוסך</strong>. ראה את חומרי הגלם, הבין את ההבדל, ובנה את חדר השינה שלו מחדש — עם שקיפות מלאה על כל פרט ופרט.</p>
+            </div>
+            <div class="ss-story-block ss-story-result">
+              <span class="ss-story-label">התוצאה</span>
+              <p>"בסוף שילמתי פחות ממה שהפסדתי על הזבל מהאינטרנט — ומה שקיבלתי יחזיק שנים. זה הייעוץ הכי טוב שקיבלתי."</p>
+            </div>
+          </div>
+          <div class="ss-card-quote-mark" aria-hidden="true">"</div>
+        </div>
+      </article>
+
+    </div>
+    <!-- End Grid -->
+
+    <!-- Bottom CTA -->
+    <div class="ss-cta-wrap">
+      <p class="ss-cta-text">מוכנים לכתוב את סיפור ההצלחה שלכם?</p>
+      <a href="/contact" class="ss-cta-btn">קבל ייעוץ אישי עכשיו</a>
+    </div>
+
+  </div>
+
+  <!-- Bottom Divider -->
+  <div class="ss-divider-wrapper">
+    <svg data-no-icon-edit="true" aria-hidden="true" viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,80 L0,48 Q60,38 120,50 T240,44 Q300,50 360,40 T480,46 Q540,40 600,50 T720,42 Q780,50 840,40 T960,46 Q1020,38 1080,48 T1200,42 Q1260,48 1320,40 T1440,46 L1440,80 Z" fill="var(--bg-light)"></path>
+      <path d="M0,80 L0,56 Q80,62 160,54 T320,58 Q400,52 480,60 T640,54 Q720,60 800,52 T960,56 Q1040,50 1120,58 T1280,52 Q1360,56 1440,50 L1440,80 Z" fill="var(--bg-light)" opacity="0.6"></path>
+    </svg>
+  </div>
+
+</section>
+
+<section class="community-trust-showcase-section" data-layout-spec="אמון הקהילה-showcase" dir="rtl">
+  <div class="cts-container">
+
+    <!-- Section Header -->
+    <div class="cts-header">
+      <div class="cts-gold-rule" aria-hidden="true">
+        <span class="cts-gold-line"></span>
+        <span class="cts-gold-diamond"></span>
+        <span class="cts-gold-line"></span>
+      </div>
+      <h2 class="cts-title">כל בית סיפור אחר</h2>
+      <p class="cts-subtitle">כי כל פרויקט מותאם אישית מהרצפה עד התקרה</p>
+      <p class="cts-description">אצלנו ב<strong>החוסך</strong> לא קיים פרויקט שנראה כמו השני. כל לקוח מביא חזון משלו — פלטת צבעים, סגנון חיים, תקציב ודרישות ייחודיות — ואנחנו מתאימים כל פרט בהתאם. הגלריה שלפניכם היא עדות לגיוון האמיתי שיוצא מהיחס האישי שאנחנו מעניקים לכל בית ובית. ייעוץ עיצוב בית אישי שמתחיל מהקשבה ומסתיים בתוצאה שמדברת בעד עצמה.</p>
+    </div>
+
+    <!-- Masonry Gallery -->
+    <div class="cts-gallery">
+
+      <!-- Large featured image -->
+      <figure class="cts-img-item cts-img-large">
+        <div class="cts-img-wrap">
+          <img data-placeholder="community-trust-showcase-image-1" data-context="Luxurious Israeli living room with a custom modular sofa in warm taupe fabric, walnut wood coffee table, and layered area rugs. Natural light from large windows, curated art on the wall, warm ambient lighting, premium interior design photography." width="720" height="480" src="/assets/site-community-trust-showcase-image-1.webp" alt="סלון מעוצב עם ספה מודולרית בצבע טאופ ושולחן עץ אגוז">
+        </div>
+        <figcaption class="cts-img-caption">סלון — ירושלים</figcaption>
+      </figure>
+
+      <!-- Tall portrait image -->
+      <figure class="cts-img-item cts-img-tall">
+        <div class="cts-img-wrap">
+          <img data-placeholder="community-trust-showcase-image-2" data-context="Elegant Israeli dining room with a custom solid oak dining table, upholstered chairs in deep forest green, pendant lighting above, sideboard with decorative objects. Warm tones, magazine-quality interior photography." width="480" height="640" src="/assets/site-community-trust-showcase-image-2.webp" alt="פינת אוכל עם שולחן אלון מלא וכיסאות מרופדים ירוק יער">
+        </div>
+        <figcaption class="cts-img-caption">פינת אוכל — תל אביב</figcaption>
+      </figure>
+
+      <!-- Small square image -->
+      <figure class="cts-img-item cts-img-small">
+        <div class="cts-img-wrap">
+          <img data-placeholder="community-trust-showcase-image-3" data-context="Styled corner vignette in a premium Israeli home: a marble-top side table with a curated ceramic vase, a linen armchair, and warm brass floor lamp. Close-up editorial interior detail shot." width="400" height="400" src="/assets/site-community-trust-showcase-image-3.webp" alt="פינת עיצוב עם כורסא פשתן ומנורת רצפה פליז">
+        </div>
+        <figcaption class="cts-img-caption">פינת ישיבה — הרצליה</figcaption>
+      </figure>
+
+      <!-- Medium landscape image -->
+      <figure class="cts-img-item cts-img-medium">
+        <div class="cts-img-wrap">
+          <img data-placeholder="community-trust-showcase-image-4" data-context="Modern Israeli bedroom with a custom upholstered bed frame in ivory boucle, matching nightstands, layered bedding in neutral tones, soft ambient lighting. High-end interior design photography, calm and serene atmosphere." width="600" height="400" src="/assets/site-community-trust-showcase-image-4.webp" alt="חדר שינה מעוצב עם מיטה מרופדת בבוקלה שנהב">
+        </div>
+        <figcaption class="cts-img-caption">חדר שינה — רמת גן</figcaption>
+      </figure>
+
+      <!-- Wide landscape image -->
+      <figure class="cts-img-item cts-img-wide">
+        <div class="cts-img-wrap">
+          <img data-placeholder="community-trust-showcase-image-5" data-context="Open-plan Israeli kitchen and living area with custom cabinetry in matte sage green, stone countertops, island seating, and curated pendant lights. Warm natural light, premium editorial interior photography." width="720" height="400" src="/assets/site-community-trust-showcase-image-5.webp" alt="מטבח פתוח עם ארונות ירוק מרווה ואי מרכזי">
+        </div>
+        <figcaption class="cts-img-caption">מטבח + סלון — נתניה</figcaption>
+      </figure>
+
+      <!-- Small accent image -->
+      <figure class="cts-img-item cts-img-accent">
+        <div class="cts-img-wrap">
+          <img data-placeholder="community-trust-showcase-image-6" data-context="Refined Israeli home office nook with a custom floating walnut desk, minimalist shelving, warm desk lamp, and linen curtains. Calm, productive atmosphere, editorial interior photography." width="400" height="480" src="/assets/site-community-trust-showcase-image-6.webp" alt="פינת עבודה עם שולחן אגוז צף ומדפים מינימליסטיים">
+        </div>
+        <figcaption class="cts-img-caption">פינת עבודה — כפר סבא</figcaption>
+      </figure>
+
+    </div>
+    <!-- /gallery -->
+
+    <!-- Bottom trust note -->
+    <div class="cts-trust-note">
+      <span class="cts-trust-icon" aria-hidden="true">
+        <svg data-element-type="icon" data-icon-type="svg" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M10 1L12.39 6.26L18 7.27L14 11.14L14.76 17L10 14.27L5.24 17L6 11.14L2 7.27L7.61 6.26L10 1Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"></path>
+        </svg>
+      </span>
+      <p class="cts-trust-text">כל הפרויקטים בוצעו עבור לקוחות שהגיעו דרך המלצה — כי תוצאות טובות מדברות בעד עצמן</p>
+    </div>
+
+  </div>
+
+  <!-- Bottom wave divider into dark section -->
+  <div class="cts-divider-wrapper">
+    <svg data-no-icon-edit="true" aria-hidden="true" viewBox="0 0 1440 90" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,90 L0,45 Q120,28 240,42 T480,32 Q600,22 720,38 T960,30 Q1080,20 1200,36 T1440,28 L1440,90 Z" fill="#0A0A0A"></path>
+    </svg>
+  </div>
+
+</section>
+
+<section class="community-trust-testimonials-section" data-layout-spec="אמון הקהילה-testimonials" dir="rtl">
+  <div class="ctt-container">
+
+    <!-- Section Header -->
+    <div class="ctt-header">
+      <div class="ctt-gold-rule" aria-hidden="true">
+        <span class="ctt-rule-line"></span>
+        <span class="ctt-rule-diamond"></span>
+        <span class="ctt-rule-line"></span>
+      </div>
+      <p class="ctt-eyebrow">הקהילה מדברת</p>
+      <h2 class="ctt-heading">למה אלפי לקוחות ממליצים על <span class="ctt-heading-accent">החוסך</span></h2>
+      <p class="ctt-subheading">הקהילה שלנו נבנתה צעד אחר צעד — מלקוח מרוצה שמספר לחבר, שמספר לשכן. כאן מדברים הלקוחות בעצמם.</p>
+    </div>
+
+    <!-- Testimonials Grid -->
+    <div class="ctt-grid">
+
+      <!-- Card 1 -->
+      <article class="ctt-card">
+        <div class="ctt-quote-icon" aria-hidden="true">
+          <svg data-element-type="icon" data-icon-type="svg" width="32" height="24" viewBox="0 0 32 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 24V14.4C0 10.56 0.96 7.36 2.88 4.8C4.86667 2.24 7.68 0.64 11.32 0L12.96 2.88C10.5067 3.52 8.69333 4.64 7.52 6.24C6.40667 7.78667 5.85333 9.6 5.86667 11.68H11.2V24H0ZM19.2 24V14.4C19.2 10.56 20.16 7.36 22.08 4.8C24.0667 2.24 26.88 0.64 30.52 0L32.16 2.88C29.7067 3.52 27.8933 4.64 26.72 6.24C25.6067 7.78667 25.0533 9.6 25.0667 11.68H30.4V24H19.2Z" fill="currentColor"></path>
+          </svg>
+        </div>
+        <blockquote class="ctt-quote">
+          <p>"הגעתי לחוסך אחרי שהתאכזבתי פעמיים מספקים אחרים שראיתי ברשתות החברתיות. כאן קיבלתי ייעוץ אישי אמיתי — יניב הסביר לי בדיוק ממה עשוי כל מוצר ולמה המחיר שווה כל שקל. הספה שהזמנתי נראית בדיוק כמו בתמונה — ואפילו יותר יפה."</p>
+        </blockquote>
+        <footer class="ctt-card-footer">
+          <div class="ctt-customer-info">
+            <span class="ctt-customer-name">מיכל רוזנברג</span>
+            <span class="ctt-customer-context">רכשה ספה בהתאמה אישית · תל אביב</span>
+          </div>
+          <div class="ctt-highlight-tag">
+            <span class="ctt-tag-dot" aria-hidden="true"></span>
+            שירות אישי
+          </div>
+        </footer>
+      </article>
+
+      <!-- Card 2 -->
+      <article class="ctt-card">
+        <div class="ctt-quote-icon" aria-hidden="true">
+          <svg data-element-type="icon" data-icon-type="svg" width="32" height="24" viewBox="0 0 32 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 24V14.4C0 10.56 0.96 7.36 2.88 4.8C4.86667 2.24 7.68 0.64 11.32 0L12.96 2.88C10.5067 3.52 8.69333 4.64 7.52 6.24C6.40667 7.78667 5.85333 9.6 5.86667 11.68H11.2V24H0ZM19.2 24V14.4C19.2 10.56 20.16 7.36 22.08 4.8C24.0667 2.24 26.88 0.64 30.52 0L32.16 2.88C29.7067 3.52 27.8933 4.64 26.72 6.24C25.6067 7.78667 25.0533 9.6 25.0667 11.68H30.4V24H19.2Z" fill="currentColor"></path>
+          </svg>
+        </div>
+        <blockquote class="ctt-quote">
+          <p>"מה שהפתיע אותי הכי הרבה זה השקיפות המוחלטת. יניב הראה לי בדיוק מאיזה חומרי גלם עשויים הרהיטים, הסביר את ההבדל בין ספקים ולא ניסה למכור לי דבר שאינו מתאים לי. קונים נכון — מרוויחים המון. זה לא סלוגן, זה מה שחוויתי בפועל."</p>
+        </blockquote>
+        <footer class="ctt-card-footer">
+          <div class="ctt-customer-info">
+            <span class="ctt-customer-name">אלון כהן</span>
+            <span class="ctt-customer-context">עיצוב סלון מלא · ראשון לציון</span>
+          </div>
+          <div class="ctt-highlight-tag">
+            <span class="ctt-tag-dot" aria-hidden="true"></span>
+            שקיפות מלאה
+          </div>
+        </footer>
+      </article>
+
+      <!-- Card 3 -->
+      <article class="ctt-card">
+        <div class="ctt-quote-icon" aria-hidden="true">
+          <svg data-element-type="icon" data-icon-type="svg" width="32" height="24" viewBox="0 0 32 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 24V14.4C0 10.56 0.96 7.36 2.88 4.8C4.86667 2.24 7.68 0.64 11.32 0L12.96 2.88C10.5067 3.52 8.69333 4.64 7.52 6.24C6.40667 7.78667 5.85333 9.6 5.86667 11.68H11.2V24H0ZM19.2 24V14.4C19.2 10.56 20.16 7.36 22.08 4.8C24.0667 2.24 26.88 0.64 30.52 0L32.16 2.88C29.7067 3.52 27.8933 4.64 26.72 6.24C25.6067 7.78667 25.0533 9.6 25.0667 11.68H30.4V24H19.2Z" fill="currentColor"></path>
+          </svg>
+        </div>
+        <blockquote class="ctt-quote">
+          <p>"ביקשתי שינויים שלא חשבתי שאפשר לבצע — צבע מיוחד, מידות לא סטנדרטיות, ריפוד שונה. כל בקשה התקבלה בחיוך ובוצעה בדיוק כמו שדמיינתי. ייעוץ עיצוב בית אישי ברמה הזו פשוט לא קיים במקום אחר. ממליצה בחום לכל מי שמחפש איכות אמיתית."</p>
+        </blockquote>
+        <footer class="ctt-card-footer">
+          <div class="ctt-customer-info">
+            <span class="ctt-customer-name">נועה לוי</span>
+            <span class="ctt-customer-context">התאמה אישית מלאה · חיפה</span>
+          </div>
+          <div class="ctt-highlight-tag">
+            <span class="ctt-tag-dot" aria-hidden="true"></span>
+            התאמה אישית
+          </div>
+        </footer>
+      </article>
+
+      <!-- Card 4 -->
+      <article class="ctt-card">
+        <div class="ctt-quote-icon" aria-hidden="true">
+          <svg data-element-type="icon" data-icon-type="svg" width="32" height="24" viewBox="0 0 32 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 24V14.4C0 10.56 0.96 7.36 2.88 4.8C4.86667 2.24 7.68 0.64 11.32 0L12.96 2.88C10.5067 3.52 8.69333 4.64 7.52 6.24C6.40667 7.78667 5.85333 9.6 5.86667 11.68H11.2V24H0ZM19.2 24V14.4C19.2 10.56 20.16 7.36 22.08 4.8C24.0667 2.24 26.88 0.64 30.52 0L32.16 2.88C29.7067 3.52 27.8933 4.64 26.72 6.24C25.6067 7.78667 25.0533 9.6 25.0667 11.68H30.4V24H19.2Z" fill="currentColor"></path>
+          </svg>
+        </div>
+        <blockquote class="ctt-quote">
+          <p>"חבר המליץ לי על החוסך ומאז אני זה שממליץ לכולם. איכות חומרי הגלם מורגשת מהרגע הראשון — הרהיטים מוצקים, הגימור מושלם, ואחרי שנתיים הכל נראה כמו חדש. זה לא מחיר זול, זה מחיר הוגן על מוצר שבאמת שווה את הכסף."</p>
+        </blockquote>
+        <footer class="ctt-card-footer">
+          <div class="ctt-customer-info">
+            <span class="ctt-customer-name">דוד שמעוני</span>
+            <span class="ctt-customer-context">לקוח חוזר · פתח תקווה</span>
+          </div>
+          <div class="ctt-highlight-tag">
+            <span class="ctt-tag-dot" aria-hidden="true"></span>
+            איכות חומרים
+          </div>
+        </footer>
+      </article>
+
+    </div>
+    <!-- End Grid -->
+
+    <!-- Word-of-mouth bar -->
+    <div class="ctt-wom-bar">
+      <div class="ctt-wom-stat">
+        <span class="ctt-wom-number">1,200+</span>
+        <span class="ctt-wom-label">לקוחות מרוצים</span>
+      </div>
+      <div class="ctt-wom-divider" aria-hidden="true"></div>
+      <div class="ctt-wom-stat">
+        <span class="ctt-wom-number">98%</span>
+        <span class="ctt-wom-label">ממליצים לחברים</span>
+      </div>
+      <div class="ctt-wom-divider" aria-hidden="true"></div>
+      <div class="ctt-wom-stat">
+        <span class="ctt-wom-number">100%</span>
+        <span class="ctt-wom-label">המלצות אורגניות</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Bottom gold divider -->
+  <div class="ctt-bottom-rule" aria-hidden="true"></div>
+
+  <!-- SVG fade into next section -->
+  <div class="ctt-divider-wrapper">
+    <svg data-no-icon-edit="true" aria-hidden="true" viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,60 L0,28 Q120,18 240,26 T480,22 Q600,28 720,20 T960,24 Q1080,30 1200,22 T1440,28 L1440,60 Z" fill="var(--bg-light)"></path>
+    </svg>
+  </div>
+
+</section>
+
+<section class="community-trust-reassurance-section" data-layout-spec="אמון הקהילה-reassurance" dir="rtl">
+  <div class="ctr-container">
+
+    <!-- Decorative gold rule -->
+    <div class="ctr-gold-rule" aria-hidden="true">
+      <span class="ctr-rule-line"></span>
+      <span class="ctr-rule-diamond"></span>
+      <span class="ctr-rule-line"></span>
+    </div>
+
+    <!-- Heading block -->
+    <div class="ctr-heading-block">
+      <h2 class="ctr-heading">תחושו את ההבדל — קניה נכונה מתחילה כאן</h2>
+      <p class="ctr-subtext">בחרו באיכות בלי להתפשר ובלי הפתעות לא נעימות. ב<strong>החוסך</strong> תקבלו ייעוץ אישי מלא, מוצרים מותאמים בדיוק לכם, וספקים מהשורה הראשונה שמשתמשים בחומרי גלם אמיתיים — כי <em>קונים נכון, מרוויחים המון</em>.</p>
+      <a href="/contact" class="ctr-cta-btn">דברו איתנו עכשיו</a>
+    </div>
+
+    <!-- Divider hairline -->
+    <div class="ctr-divider" aria-hidden="true"></div>
+
+    <!-- Trust badges row -->
+    <ul class="ctr-badges-row" role="list">
+      <li class="ctr-badge-item">
+        <span class="ctr-badge-dot" aria-hidden="true"></span>
+        <span class="ctr-badge-text">התאמה אישית מלאה לכל מוצר</span>
+      </li>
+      <li class="ctr-badge-item">
+        <span class="ctr-badge-dot" aria-hidden="true"></span>
+        <span class="ctr-badge-text">שירות אישי שלא קיים בשום מקום אחר</span>
+      </li>
+      <li class="ctr-badge-item">
+        <span class="ctr-badge-dot" aria-hidden="true"></span>
+        <span class="ctr-badge-text">ספקים מהשורה הראשונה בלבד</span>
+      </li>
+      <li class="ctr-badge-item">
+        <span class="ctr-badge-dot" aria-hidden="true"></span>
+        <span class="ctr-badge-text">חומרי גלם איכותיים ושקיפות מלאה</span>
+      </li>
+      <li class="ctr-badge-item">
+        <span class="ctr-badge-dot" aria-hidden="true"></span>
+        <span class="ctr-badge-text">קהילה ענקית של לקוחות ממליצים</span>
+      </li>
+    </ul>
+
+  </div>
+</section>
+  </main>
+  
+  <footer class="site-footer" dir="rtl">
+  <div class="footer-inner">
+    <div class="footer-top">
+
+      <!-- Column 1: Company Info -->
+      <div class="footer-col footer-brand">
+        <a href="/" class="footer-logo-link">
+          <img src="/assets/logo.webp" alt="החוסך" class="logo">
+        </a>
+        <p class="footer-tagline">עיצוב הבית ורהיטים בסטנדרט גבוה — איכות שמרגישים, מחיר שחוסך.</p>
+        <div class="footer-social">
+          <a href="[facebook_handle]" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="[instagram_handle]" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="[whatsapp_handle]" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+
+      <!-- Column 2: Quick Links -->
+      <div class="footer-col">
+        <h3 class="footer-heading"><span class="heading-accent"></span>ניווט מהיר</h3>
+        <ul class="footer-links">
+          <li><a href="/customization-quality">התאמה אישית ואיכות</a></li>
+          <li><a href="/community-trust">אמון הקהילה</a></li>
+          <li><a href="/contact">צור קשר</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 3: Contact Info -->
+      <div class="footer-col">
+        <h3 class="footer-heading"><span class="heading-accent"></span>יצירת קשר</h3>
+        <ul class="footer-contact">
+          <li>
+            <span class="contact-icon"><i class="fas fa-envelope"></i></span>
+            <span class="contact-text"><a href="mailto:[business_email]">[business_email]</a></span>
+          </li>
+          <li>
+            <span class="contact-icon"><i class="fas fa-phone"></i></span>
+            <span class="contact-text"><a href="tel:[business_phone]">[business_phone]</a></span>
+          </li>
+          <li><a href="/"><span class="contact-icon"><i class="fas fa-map-marker-alt"></i></span>
+            <span class="contact-text">[business_address]</span></a></li>
+        </ul>
+      </div>
+
+      <!-- Column 4: Decorative / Brand Value -->
+      <div class="footer-col footer-value">
+        <h3 class="footer-heading"><span class="heading-accent"></span>למה החוסך?</h3>
+        <ul class="footer-values-list">
+          <li><a href="/"><i class="fas fa-check-circle"></i> חומרים איכותיים ועמידים</a></li>
+          <li><a href="/"><i class="fas fa-check-circle"></i> עיצוב מותאם אישית</a></li>
+          <li><a href="/"><i class="fas fa-check-circle"></i> שירות מקצועי ואמין</a></li>
+          <li><a href="/"><i class="fas fa-check-circle"></i> ערך לטווח ארוך</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="footer-divider"></div>
+
+    <!-- Bottom Bar -->
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2026 החוסך. כל הזכויות שמורות.</p>
+      <div class="footer-legal">
+        <a href="/privacy">מדיניות פרטיות</a>
+        <span class="legal-sep"></span>
+        <a href="/terms">תנאי שימוש</a><span class="separator">|</span>
+            <a href="/return-policy" aria-label="מדיניות החזרות">
+              מדיניות החזרות
+            </a>
+        <span class="legal-sep"></span>
+        <a href="/accessibility">נגישות</a>
+        <span class="legal-sep"></span>
+        <a href="https://zappy5.com" target="_blank" class="zappy-attribution">נוצר באמצעות Zappy</a>
+      </div>
+    </div>
+
+  </div>
+</footer>
+  
+  <a href="https://wa.me/[whatsapp_handle]" class="whatsapp-float" aria-label="WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+  
+  <div data-integration="accessibility:toolbar"></div>
+
+    <script src="/script.js"></script>
+
+    <script id="zappy-mobile-submenu-script">
+    (function() {
+      function initMobileSubmenuToggles() {
+        if (window.innerWidth > 768) {
+          document.querySelectorAll('.mobile-submenu-toggle').forEach(function(btn) { btn.remove(); });
+          document.querySelectorAll('.sub-menu.mobile-expanded').forEach(function(menu) { menu.classList.remove('mobile-expanded'); });
+          return;
+        }
+        var items = document.querySelectorAll('.nav-menu li:has(.sub-menu), nav li:has(.sub-menu), .navbar li:has(.sub-menu), #navMenu li:has(.sub-menu)');
+        items.forEach(function(li) {
+          if (li.querySelector('.mobile-submenu-toggle')) return;
+          var submenu = li.querySelector('.sub-menu');
+          var parentLink = li.querySelector(':scope > a');
+          if (!submenu || !parentLink) return;
+          var toggleBtn = document.createElement('button');
+          toggleBtn.className = 'mobile-submenu-toggle';
+          toggleBtn.setAttribute('aria-label', 'Toggle submenu');
+          toggleBtn.setAttribute('type', 'button');
+          parentLink.insertAdjacentElement('afterend', toggleBtn);
+          toggleBtn.addEventListener('click', function(e) {
+            e.preventDefault(); e.stopPropagation();
+            document.querySelectorAll('.sub-menu.mobile-expanded').forEach(function(menu) {
+              if (menu !== submenu) { menu.classList.remove('mobile-expanded'); var t = menu.parentElement.querySelector('.mobile-submenu-toggle'); if(t) t.classList.remove('expanded'); }
+            });
+            submenu.classList.toggle('mobile-expanded');
+            toggleBtn.classList.toggle('expanded');
+          });
+        });
+      }
+      if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', initMobileSubmenuToggles); }
+      else { initMobileSubmenuToggles(); }
+      var resizeTimer; window.addEventListener('resize', function() { clearTimeout(resizeTimer); resizeTimer = setTimeout(initMobileSubmenuToggles, 250); });
+      // Re-initialize when mobile menu becomes visible (MutationObserver)
+      var observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+          if (mutation.type === 'attributes') {
+            var target = mutation.target;
+            if (target.classList && (target.classList.contains('active') || target.classList.contains('open'))) {
+              setTimeout(initMobileSubmenuToggles, 100);
+            }
+          }
+        });
+      });
+      setTimeout(function() {
+        document.querySelectorAll('.mobile-menu, .nav-menu, #navMenu, nav').forEach(function(menu) {
+          observer.observe(menu, { attributes: true, attributeFilter: ['class', 'style'] });
+        });
+      }, 500);
+    })();
+    </script>
+
+    <script id="zappy-navbar-scroll-effect">
+    (function(){
+      var nb=document.querySelector('nav.navbar,.navbar:not(.zappy-catalog-menu)');
+      var cm=document.querySelector('.zappy-catalog-menu,#zappy-catalog-menu');
+      if(!nb)return;
+      var fb='rgba(245,241,234,0.85)';
+      var th=60;
+      var rs=getComputedStyle(document.documentElement);
+      var td=rs.getPropertyValue('--text-dark').trim()||'#1a1a1a';
+      var tl=rs.getPropertyValue('--text-light').trim()||'#ffffff';
+      var st=true?td:tl;
+      nb.style.transition='background 0.3s ease,backdrop-filter 0.3s ease,-webkit-backdrop-filter 0.3s ease,box-shadow 0.3s ease';
+      if(cm)cm.style.transition='background 0.3s ease,backdrop-filter 0.3s ease,-webkit-backdrop-filter 0.3s ease';
+      var neSel='a,.navbar-brand,.navbar-brand a,.dropdown-toggle,.mobile-toggle,.phone-header-btn,.mobile-hamburger-btn,.mobile-close-btn,.mobile-submenu-toggle,.nav-link';
+      var skipCls=['cart-link','login-link','nav-search-toggle','search-toggle'];
+      function sTC(c,clr){var els=c.querySelectorAll(neSel);for(var i=0;i<els.length;i++){var sk=false;if(els[i].closest('.sub-menu')||els[i].closest('.dropdown-menu')){sk=true;}for(var j=0;j<skipCls.length;j++){if(els[i].classList.contains(skipCls[j])){sk=true;break;}}if(!sk)els[i].style.setProperty('color',clr,'important');}}
+      function cTC(c){var els=c.querySelectorAll(neSel);for(var i=0;i<els.length;i++){if(els[i].closest('.sub-menu')||els[i].closest('.dropdown-menu'))continue;els[i].style.removeProperty('color');}}
+      function applyScrolled(){
+        nb.classList.add('scrolled');
+        if(window.innerWidth>768){
+          nb.style.setProperty('--frosted-text',st);
+          nb.style.setProperty('background-image','none','important');
+          nb.style.setProperty('background-color',fb,'important');
+          nb.style.backdropFilter='blur(12px)';nb.style.webkitBackdropFilter='blur(12px)';nb.style.boxShadow='0 2px 16px rgba(0,0,0,0.12)';
+          sTC(nb,st);
+        }
+        if(cm){cm.classList.add('scrolled');if(window.innerWidth>768){cm.style.setProperty('background',fb,'important');cm.style.setProperty('backdrop-filter','blur(12px)','important');cm.style.setProperty('-webkit-backdrop-filter','blur(12px)','important');sTC(cm,st);}}
+      }
+      function onS(){
+        if(window._zappyNavNoDarkHero) return;
+        if(window.innerWidth<=768){nb.classList.remove('scrolled');cTC(nb);if(cm){cm.classList.remove('scrolled');cTC(cm);}return;}
+        var y=window.scrollY||window.pageYOffset;
+        if(y>th){
+          nb.classList.add('scrolled');nb.style.setProperty('background-color',fb,'important');nb.style.setProperty('background-image','none','important');
+          nb.style.setProperty('--frosted-text',st);nb.style.backdropFilter='blur(12px)';nb.style.webkitBackdropFilter='blur(12px)';nb.style.boxShadow='0 2px 16px rgba(0,0,0,0.12)';
+          sTC(nb,st);
+          if(cm){cm.classList.add('scrolled');cm.style.setProperty('background',fb,'important');cm.style.setProperty('backdrop-filter','blur(12px)','important');cm.style.setProperty('-webkit-backdrop-filter','blur(12px)','important');sTC(cm,st);}
+        }else{
+          nb.classList.remove('scrolled');nb.style.setProperty('background-color','transparent','important');nb.style.removeProperty('background-image');
+          nb.style.removeProperty('--frosted-text');nb.style.backdropFilter='none';nb.style.webkitBackdropFilter='none';nb.style.boxShadow='none';
+          cTC(nb);
+          if(cm){cm.classList.remove('scrolled');cm.style.setProperty('background','transparent','important');cm.style.setProperty('backdrop-filter','none','important');cm.style.setProperty('-webkit-backdrop-filter','none','important');cTC(cm);}
+        }
+      }
+      function sLum(rv,gv,bv){rv/=255;gv/=255;bv/=255;rv=rv<=0.03928?rv/12.92:Math.pow((rv+0.055)/1.055,2.4);gv=gv<=0.03928?gv/12.92:Math.pow((gv+0.055)/1.055,2.4);bv=bv<=0.03928?bv/12.92:Math.pow((bv+0.055)/1.055,2.4);return 0.2126*rv+0.7152*gv+0.0722*bv;}
+      window.addEventListener('scroll',onS,{passive:true});
+      window.addEventListener('resize',onS,{passive:true});
+      onS();
+      var heroEl=document.querySelector('section[class*="hero"],[data-hero-type],main>section:first-child');
+      var hasDH=false;
+      if(heroEl){var hCs=getComputedStyle(heroEl);var hBI=hCs.backgroundImage;if(hBI&&hBI!=='none'){if(hBI.indexOf('url(')!==-1){var hM2=hCs.backgroundColor.match(/\d+/g);if(hM2&&hM2.length>=3){hasDH=sLum(parseInt(hM2[0]),parseInt(hM2[1]),parseInt(hM2[2]))<0.4;}else{hasDH=true;}}else if(hBI.indexOf('gradient')!==-1){var cM=hBI.match(/rgba?\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)/g);if(cM&&cM.length>0){var tLm=0;for(var ci=0;ci<cM.length;ci++){var pts=cM[ci].match(/\d+/g);tLm+=sLum(parseInt(pts[0]),parseInt(pts[1]),parseInt(pts[2]));}hasDH=(tLm/cM.length)<0.4;}else{hasDH=true;}}else{hasDH=true;}}else{var hM=hCs.backgroundColor.match(/\d+/g);if(hM&&hM.length>=3){hasDH=sLum(parseInt(hM[0]),parseInt(hM[1]),parseInt(hM[2]))<0.4;}}}
+      if(!hasDH){window.removeEventListener('scroll',onS);window.removeEventListener('resize',onS);applyScrolled();window._zappyNavNoDarkHero=true;}
+    })();
+    </script>
+</body>
+</html>
